@@ -21,7 +21,7 @@ public class DHT11DataService {
     public boolean saveDHT11Data(DHT11Data dht11Data){
         dht11Data.setDate(DateTime.getCurrentFormattedDateTime());
         dht11Data.setTime(DateTime.getCurrentFormattedTime());
-        System.out.println("Data "+dht11Data.getDate()+" time"+dht11Data.getTime());
+
         if(dht11DataRepository.save(dht11Data)!=null){
             return true;
         }else{

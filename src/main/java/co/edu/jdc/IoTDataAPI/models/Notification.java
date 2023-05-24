@@ -3,7 +3,7 @@ package co.edu.jdc.IoTDataAPI.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "notifications")
+@Table(name = "notification")
 public class Notification {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

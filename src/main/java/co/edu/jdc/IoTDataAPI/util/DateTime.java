@@ -19,7 +19,7 @@ public class DateTime {
 
     public static String getCurrentFormattedTime() {
         LocalDateTime now = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("h:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("h:mm:ss a");
         return now.format(formatter);
     }
 }
