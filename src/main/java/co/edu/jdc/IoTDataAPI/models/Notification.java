@@ -1,5 +1,5 @@
 package co.edu.jdc.IoTDataAPI.models;
-
+/*Autor: William Roa*/
 import javax.persistence.*;
 
 @Entity

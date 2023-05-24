@@ -1,10 +1,9 @@
 package co.edu.jdc.IoTDataAPI.controllers;
-
+/*Autor: William Roa*/
 import co.edu.jdc.IoTDataAPI.models.Alarm;
 import co.edu.jdc.IoTDataAPI.services.AlarmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
