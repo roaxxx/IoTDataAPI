@@ -19,6 +19,10 @@ public class Notification {
     @Column(name = "Notification_Time")
     private String notificationTime;
 
+    @Column(name = "activation_param")
+    private int trigger;
+
+
     public int getNotificationId() {
         return notificationId;
     }
@@ -49,6 +53,14 @@ public class Notification {
 
     public void setNotificationTime(String notificationTime) {
         this.notificationTime = notificationTime;
+    }
+
+    public int getTrigger() {
+        return trigger;
+    }
+
+    public void setTrigger(int trigger) {
+        this.trigger = trigger;
     }
 }
 

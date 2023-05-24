@@ -18,6 +18,9 @@ public class Alarm {
     @Column(name = "Alarm_State")
     private String alarmState;
 
+    @Column(name = "condition_param")
+    private int condition;
+
     public String getIdAlarm() {
         return idAlarm;
     }
@@ -40,5 +43,13 @@ public class Alarm {
 
     public void setAlarmState(String alarmState) {
         this.alarmState = alarmState;
+    }
+
+    public int getCondition() {
+        return condition;
+    }
+
+    public void setCondition(int condition) {
+        this.condition = condition;
     }
 }

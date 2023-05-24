@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("dhtSensor")
+@RequestMapping("door")
 public class DoorController {
 
     @Autowired
@@ -19,7 +19,7 @@ public class DoorController {
         return doorService.listAllDoors();
     }
 
-    @PostMapping("/updateDoors")
+    @PostMapping("/updateDoor")
     public boolean updateDoors(@RequestBody Door door){
         return doorService.updateDoor(door);
     }
