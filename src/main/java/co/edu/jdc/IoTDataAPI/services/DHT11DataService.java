@@ -33,4 +33,7 @@ public class DHT11DataService {
         List<DHT11Data> latestDataList = dht11DataRepository.findLatestData();
         return latestDataList.isEmpty() ? null : latestDataList.get(0);
     }
+    public void dropDHTDataRecords(){
+        dht11DataRepository.deleteAll();
+    }
 }

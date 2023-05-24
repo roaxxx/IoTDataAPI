@@ -28,4 +28,9 @@ public class DHTController {
     public DHT11Data findLatestDataFromDHT11(){
         return dht11DataService.findLatestData();
     }
+
+    @GetMapping("/delete")
+    public void deleteAllRecords(){
+        dht11DataService.dropDHTDataRecords();
+    }
 }
