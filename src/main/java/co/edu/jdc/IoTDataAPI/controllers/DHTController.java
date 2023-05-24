@@ -23,4 +23,9 @@ public class DHTController {
     public boolean saveDHT11Data(@RequestBody DHT11Data dht11Data){
         return dht11DataService.saveDHT11Data(dht11Data);
     }
+
+    @GetMapping("getLatest")
+    public DHT11Data findLatestDataFromDHT11(){
+        return dht11DataService.findLatestData();
+    }
 }

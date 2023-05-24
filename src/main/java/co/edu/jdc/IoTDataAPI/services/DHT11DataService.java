@@ -28,4 +28,9 @@ public class DHT11DataService {
             return false;
         }
     }
+
+    public DHT11Data findLatestData(){
+        List<DHT11Data> latestDataList = dht11DataRepository.findLatestData();
+        return latestDataList.isEmpty() ? null : latestDataList.get(0);
+    }
 }
