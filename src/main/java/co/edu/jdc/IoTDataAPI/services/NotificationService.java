@@ -27,4 +27,9 @@ public class NotificationService {
     public List<Notification> listNotifications(){
         return notificationsRepository.findAll();
     }
+
+    public boolean deleteNotifications(){
+        notificationsRepository.deleteAll();
+        return false;
+    }
 }

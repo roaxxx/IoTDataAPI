@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("notifications")
-public class NotificationsController {
+public class NotificationController {
 
     @Autowired
     private NotificationService notificationService;
@@ -22,5 +22,10 @@ public class NotificationsController {
     @GetMapping("listNotifications")
     public List<Notification> listNotifications(){
         return notificationService.listNotifications();
+    }
+
+    @GetMapping("deleteAll")
+    public boolean deleteAllNotifications(){
+        return notificationService.deleteNotifications();
     }
 }
