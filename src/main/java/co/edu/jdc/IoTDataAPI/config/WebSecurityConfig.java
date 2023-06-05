@@ -1,5 +1,7 @@
-package co.edu.jdc.IoTDataAPI.security;
+package co.edu.jdc.IoTDataAPI.config;
 
+import co.edu.jdc.IoTDataAPI.security.JWTAuthenticationFilter;
+import co.edu.jdc.IoTDataAPI.security.JWTAuthorizationFilter;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

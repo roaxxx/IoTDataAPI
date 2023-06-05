@@ -1,4 +1,4 @@
-package co.edu.jdc.IoTDataAPI;
+package co.edu.jdc.IoTDataAPI.config;
 
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;

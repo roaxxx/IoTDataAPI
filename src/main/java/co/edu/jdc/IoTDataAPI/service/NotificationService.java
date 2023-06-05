@@ -11,25 +11,41 @@ import java.util.List;
 @Service
 public class NotificationService {
 
-    @Autowired
-    private NotificationsRepository notificationsRepository;
 
+    private final NotificationsRepository notificationsRepository;
+
+    @Autowired
+    public NotificationService(NotificationsRepository notificationsRepository) {
+        this.notificationsRepository = notificationsRepository;
+    }
+
+    /**
+     * Save a notifiaction record on database
+     * @param notification object to save
+     * @return true if saved or null if not
+     */
     public boolean saveNotification(Notification notification){
         notification.setNotificationDate(DateTime.getCurrentFormattedDate());
         notification.setNotificationTime(DateTime.getCurrentFormattedTime());
         if(notificationsRepository.save(notification)!=null){
             return true;
-        }else{
-            return false;
-        }
+        }else return false;
     }
 
+    /**
+     * Find all notification records on database
+     * @return Notification object list or null if not data found
+     */
     public List<Notification> listNotifications(){
         return notificationsRepository.findAll();
     }
 
+    /**
+     * Drop all notification records on database
+     * @return true if droped
+     */
     public boolean deleteNotifications(){
         notificationsRepository.deleteAll();
-        return false;
+        return true;
     }
 }

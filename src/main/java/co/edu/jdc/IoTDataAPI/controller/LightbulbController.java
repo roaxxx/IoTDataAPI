@@ -13,6 +13,7 @@ public class LightbulbController {
     @Autowired
     private LightbulbService lightbulbService;
 
+
     @PostMapping("update")
     public boolean updateLightbulb(@RequestBody Lightbulb lightbulb){
         return lightbulbService.updateLightbulb(lightbulb);

@@ -10,9 +10,18 @@ import java.util.List;
 @Service
 public class LightbulbService {
 
-    @Autowired
-    private LightbulbRepositoy lightbulbRepositoy;
+    private final LightbulbRepositoy lightbulbRepositoy;
 
+    @Autowired
+    public LightbulbService(LightbulbRepositoy lightbulbRepositoy) {
+        this.lightbulbRepositoy = lightbulbRepositoy;
+    }
+
+    /**
+     * Update a lightbuld record on database
+     * @param lightbulb object to update record
+     * @return true if updated or false if not
+     */
     public boolean updateLightbulb(Lightbulb lightbulb){
         if(lightbulbRepositoy.save(lightbulb)!=null){
             return true;
@@ -21,6 +30,10 @@ public class LightbulbService {
         }
     }
 
+    /**
+     * Find all lightbulbs records on database
+     * @return Lightbulb list or null if not data found
+     */
     public List<Lightbulb> listAllLighbulbs(){
         return lightbulbRepositoy.findAll();
     }

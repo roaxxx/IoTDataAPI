@@ -13,10 +13,20 @@ public class AlarmService {
     @Autowired
     private AlarmRepository alarmRepository;
 
+    /**
+     * Method to update one alarm
+     * @param alarm -> alarm object
+     * @return true if update is done
+     */
     public boolean updateAlarm(Alarm alarm){
         alarmRepository.save(alarm);
         return true;
     }
+
+    /**
+     * Method to find all alarms
+     * @return list of alarm objects
+     */
     public List<Alarm> listAllAlarms(){
         return alarmRepository.findAll();
     }

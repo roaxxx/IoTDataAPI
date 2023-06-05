@@ -1,5 +1,6 @@
 package co.edu.jdc.IoTDataAPI;
 
+import co.edu.jdc.IoTDataAPI.config.CorsConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;
