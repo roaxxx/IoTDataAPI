@@ -30,11 +30,8 @@ public class AuthController {
                             authCredentials.getPassword()));
 
             SecurityContextHolder.getContext().setAuthentication(authentication);
-
             UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
             String token = TokenUtils.createToken(userDetails.getName(), userDetails.getUsername());
-
-            System.out.println("Este es el token que se ha generado" + token);
 
             return ResponseEntity.ok()
                     .body(token);

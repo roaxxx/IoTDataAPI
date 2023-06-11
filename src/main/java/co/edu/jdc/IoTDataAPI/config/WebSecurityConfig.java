@@ -2,6 +2,7 @@ package co.edu.jdc.IoTDataAPI.config;
 
 import co.edu.jdc.IoTDataAPI.security.JWTAuthenticationFilter;
 import co.edu.jdc.IoTDataAPI.security.JWTAuthorizationFilter;
+import co.edu.jdc.IoTDataAPI.security.JwtAuthenticationEntryPoint;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,6 +22,7 @@ public class WebSecurityConfig {
 
     private final UserDetailsService userDetailsService;
     private final JWTAuthorizationFilter jwtAuthorizationFilter;
+    private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http, AuthenticationManager authManager) throws Exception {
@@ -34,6 +36,8 @@ public class WebSecurityConfig {
                 .anyRequest()
                 .authenticated()
                 .and()
+                .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
+                .and()
                 .httpBasic()
                 .and()
                 .sessionManagement()
@@ -43,6 +47,7 @@ public class WebSecurityConfig {
                 .addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
+
     /*
      * Usuario sin base de datos
      * 
