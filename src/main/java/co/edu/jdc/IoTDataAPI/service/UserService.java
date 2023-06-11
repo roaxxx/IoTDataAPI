@@ -21,6 +21,7 @@ public class UserService {
      * @param password of user
      * @return username or null if not found
      */
+
     public String login(String email, String password) {
         User user = userRepository.findByEmail(email);
         if (user != null && user.getPassword().equals(password)) {

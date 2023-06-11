@@ -23,13 +23,14 @@ public class WebSecurityConfig {
     private final JWTAuthorizationFilter jwtAuthorizationFilter;
 
     @Bean
-    SecurityFilterChain filterChain(HttpSecurity http, AuthenticationManager authManager) throws Exception{
+    SecurityFilterChain filterChain(HttpSecurity http, AuthenticationManager authManager) throws Exception {
         JWTAuthenticationFilter jwtAuthenticationFilter = new JWTAuthenticationFilter();
         jwtAuthenticationFilter.setAuthenticationManager(authManager);
-        jwtAuthenticationFilter.setFilterProcessesUrl("/logins");
+
         return http
                 .csrf().disable()
                 .authorizeRequests()
+                .antMatchers("/authenticateUser").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -42,19 +43,21 @@ public class WebSecurityConfig {
                 .addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
-
-    /*Usuario sin base de datos
-    @Bean
-    UserDetailsService userDetailsService(){
-        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-        manager.createUser(User.withUsername("fernando")
-                .password(passwordEncoder().encode("roa")).roles().build());
-        return manager;
-    }*/
+    /*
+     * Usuario sin base de datos
+     * 
+     * @Bean
+     * UserDetailsService userDetailsService(){
+     * InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
+     * manager.createUser(User.withUsername("fernando")
+     * .password(passwordEncoder().encode("roa")).roles().build());
+     * return manager;
+     * }
+     */
 
     @Bean
     AuthenticationManager authManager(HttpSecurity http) throws Exception {
-        return  http.getSharedObject(AuthenticationManagerBuilder.class)
+        return http.getSharedObject(AuthenticationManagerBuilder.class)
                 .userDetailsService(userDetailsService)
                 .passwordEncoder(passwordEncoder())
                 .and()
@@ -62,7 +65,7 @@ public class WebSecurityConfig {
     }
 
     @Bean
-    PasswordEncoder passwordEncoder(){
+    PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }
