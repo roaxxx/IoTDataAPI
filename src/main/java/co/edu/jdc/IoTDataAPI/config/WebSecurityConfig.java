@@ -1,6 +1,5 @@
 package co.edu.jdc.IoTDataAPI.config;
 
-import co.edu.jdc.IoTDataAPI.security.JWTAuthenticationFilter;
 import co.edu.jdc.IoTDataAPI.security.JWTAuthorizationFilter;
 import co.edu.jdc.IoTDataAPI.security.JwtAuthenticationEntryPoint;
 import lombok.AllArgsConstructor;
