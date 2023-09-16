@@ -1,6 +1,6 @@
 package co.edu.jdc.IoTDataAPI.repository;
 
-import co.edu.jdc.IoTDataAPI.model.Alarm;
+import co.edu.jdc.IoTDataAPI.model.entity.Alarm;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

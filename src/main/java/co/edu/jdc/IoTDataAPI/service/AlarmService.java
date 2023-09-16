@@ -1,10 +1,12 @@
 package co.edu.jdc.IoTDataAPI.service;
 
-import co.edu.jdc.IoTDataAPI.model.Alarm;
+import co.edu.jdc.IoTDataAPI.model.entity.Alarm;
 import co.edu.jdc.IoTDataAPI.repository.AlarmRepository;
+import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @Service
@@ -15,12 +17,11 @@ public class AlarmService {
 
     /**
      * Method to update one alarm
-     * @param alarm -> alarm object
+     * @param alarmId -> id of and alarm
      * @return true if update is done
      */
-    public boolean updateAlarm(Alarm alarm){
-        alarmRepository.save(alarm);
-        return true;
+    public Alarm saveAlarm(Alarm alarm){
+        return alarmRepository.save(alarm);
     }
 
     /**
@@ -29,5 +30,13 @@ public class AlarmService {
      */
     public List<Alarm> listAllAlarms(){
         return alarmRepository.findAll();
+    }
+
+
+    public Alarm findAlarmById(String alarmId){
+        return alarmRepository.findById(alarmId)
+                    .orElseThrow(
+                            () -> new EntityNotFoundException("Registro no encontrado por id: "+alarmId)
+                    );
     }
 }

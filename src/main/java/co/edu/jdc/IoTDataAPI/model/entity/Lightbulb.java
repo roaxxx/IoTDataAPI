@@ -1,4 +1,4 @@
-package co.edu.jdc.IoTDataAPI.model;
+package co.edu.jdc.IoTDataAPI.model.entity;
 
 import javax.persistence.*;
 

@@ -1,6 +1,6 @@
 package co.edu.jdc.IoTDataAPI.service;
 
-import co.edu.jdc.IoTDataAPI.model.DHT11Data;
+import co.edu.jdc.IoTDataAPI.model.entity.DHT11Data;
 import co.edu.jdc.IoTDataAPI.repository.DHT11DataRepository;
 import co.edu.jdc.IoTDataAPI.util.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,15 +32,10 @@ public class DHT11DataService {
      * @param dht11Data object to save
      * @return true if saved or false if not
      */
-    public boolean saveDHT11Data(DHT11Data dht11Data){
+    public DHT11Data saveDHT11Data(DHT11Data dht11Data){
         dht11Data.setDate(DateTime.getCurrentFormattedDateTime());
         dht11Data.setTime(DateTime.getCurrentFormattedTime());
-
-        if(dht11DataRepository.save(dht11Data)!=null){
-            return true;
-        }else{
-            return false;
-        }
+        return dht11DataRepository.save(dht11Data);
     }
 
     /**
@@ -55,7 +50,8 @@ public class DHT11DataService {
     /**
      * Method to drop all DHT11 sensor records
      */
-    public void dropDHTDataRecords(){
+    public Boolean dropDHTDataRecords(){
         dht11DataRepository.deleteAll();
+        return dht11DataRepository.findAll().isEmpty();
     }
 }

@@ -1,8 +1,9 @@
 package co.edu.jdc.IoTDataAPI.service;
 
-import co.edu.jdc.IoTDataAPI.model.User;
+import co.edu.jdc.IoTDataAPI.model.entity.User;
 import co.edu.jdc.IoTDataAPI.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,16 +18,15 @@ public class UserService {
 
     /**
      * Authenticate user
-     * @param email of user
-     * @param password of user
+     * 
+     * @param email    of user
      * @return username or null if not found
      */
+    public String getUsername(String email) throws UsernameNotFoundException {
+        User user = userRepository
+                .findOneByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("Usuario con email no existe"));
 
-    public String login(String email, String password) {
-        User user = userRepository.findByEmail(email);
-        if (user != null && user.getPassword().equals(password)) {
-            return user.getUserName();
-        }
-        return null;
+        return user.getUserName();
     }
 }

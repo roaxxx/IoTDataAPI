@@ -1,7 +1,8 @@
-package co.edu.jdc.IoTDataAPI.security;
+package co.edu.jdc.IoTDataAPI.service;
 
-import co.edu.jdc.IoTDataAPI.model.User;
+import co.edu.jdc.IoTDataAPI.model.entity.User;
 import co.edu.jdc.IoTDataAPI.repository.UserRepository;
+import co.edu.jdc.IoTDataAPI.security.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

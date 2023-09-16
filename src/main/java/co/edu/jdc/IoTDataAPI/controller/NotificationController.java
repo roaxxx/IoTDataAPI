@@ -1,8 +1,10 @@
 package co.edu.jdc.IoTDataAPI.controller;
 
-import co.edu.jdc.IoTDataAPI.model.Notification;
+import co.edu.jdc.IoTDataAPI.model.entity.Notification;
 import co.edu.jdc.IoTDataAPI.service.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,18 +16,19 @@ public class NotificationController {
     @Autowired
     private NotificationService notificationService;
 
-    @PostMapping("addNotification")
-    public boolean saveNotification(@RequestBody Notification notification){
-        return notificationService.saveNotification(notification);
+    @PostMapping()
+    public ResponseEntity<Notification> saveNotification(@RequestBody Notification notification){
+        return new ResponseEntity<>(notificationService.saveNotification(notification), HttpStatus.CREATED) ;
     }
 
     @GetMapping("listNotifications")
-    public List<Notification> listNotifications(){
-        return notificationService.listNotifications();
+    public ResponseEntity<List<Notification>> listNotifications(){
+
+        return new ResponseEntity<>(notificationService.listNotifications(), HttpStatus.OK);
     }
 
-    @GetMapping("deleteAll")
-    public boolean deleteAllNotifications(){
-        return notificationService.deleteNotifications();
+    @DeleteMapping()
+    public ResponseEntity<Boolean> deleteAllNotifications(){
+        return new ResponseEntity<>(notificationService.deleteNotifications(), HttpStatus.OK) ;
     }
 }

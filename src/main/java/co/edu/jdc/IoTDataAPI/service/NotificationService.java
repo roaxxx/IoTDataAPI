@@ -1,6 +1,6 @@
 package co.edu.jdc.IoTDataAPI.service;
 
-import co.edu.jdc.IoTDataAPI.model.Notification;
+import co.edu.jdc.IoTDataAPI.model.entity.Notification;
 import co.edu.jdc.IoTDataAPI.repository.NotificationsRepository;
 import co.edu.jdc.IoTDataAPI.util.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,12 +24,10 @@ public class NotificationService {
      * @param notification object to save
      * @return true if saved or null if not
      */
-    public boolean saveNotification(Notification notification){
+    public Notification saveNotification(Notification notification){
         notification.setNotificationDate(DateTime.getCurrentFormattedDate());
         notification.setNotificationTime(DateTime.getCurrentFormattedTime());
-        if(notificationsRepository.save(notification)!=null){
-            return true;
-        }else return false;
+        return notificationsRepository.save(notification);
     }
 
     /**

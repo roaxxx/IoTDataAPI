@@ -1,6 +1,6 @@
 package co.edu.jdc.IoTDataAPI.repository;
 
-import co.edu.jdc.IoTDataAPI.model.DHT11Data;
+import co.edu.jdc.IoTDataAPI.model.entity.DHT11Data;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

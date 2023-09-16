@@ -1,9 +1,9 @@
-package co.edu.jdc.IoTDataAPI.security;
+package co.edu.jdc.IoTDataAPI.model.dto;
 
 import lombok.Data;
 
 @Data
-public class AuthCredentials {
+public class AuthCredentialsDTO {
     private String email;
     private String password;
 }

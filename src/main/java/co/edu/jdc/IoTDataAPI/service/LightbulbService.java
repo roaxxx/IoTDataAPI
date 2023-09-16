@@ -1,6 +1,6 @@
 package co.edu.jdc.IoTDataAPI.service;
 
-import co.edu.jdc.IoTDataAPI.model.Lightbulb;
+import co.edu.jdc.IoTDataAPI.model.entity.Lightbulb;
 import co.edu.jdc.IoTDataAPI.repository.LightbulbRepositoy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,22 +19,21 @@ public class LightbulbService {
 
     /**
      * Update a lightbuld record on database
-     * @param lightbulb object to update record
-     * @return true if updated or false if not
+     * @param idLightbulb id o lightbulb to update
+     * @param lightbulbState new state to set
+     * @return Lightbulb to update
      */
-    public boolean updateLightbulb(Lightbulb lightbulb){
-        if(lightbulbRepositoy.save(lightbulb)!=null){
-            return true;
-        }else{
-            return false;
-        }
+    public Lightbulb updateLightbulb(int idLightbulb, String lightbulbState){
+        Lightbulb lightbulbToUpdate = lightbulbRepositoy.getById(idLightbulb);
+        lightbulbToUpdate.setBulbValue(lightbulbState);
+        return lightbulbRepositoy.save(lightbulbToUpdate);
     }
 
     /**
      * Find all lightbulbs records on database
      * @return Lightbulb list or null if not data found
      */
-    public List<Lightbulb> listAllLighbulbs(){
+    public List<Lightbulb> listAllLighbulbs() {
         return lightbulbRepositoy.findAll();
     }
 }

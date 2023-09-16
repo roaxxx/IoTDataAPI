@@ -1,6 +1,6 @@
 package co.edu.jdc.IoTDataAPI.service;
 
-import co.edu.jdc.IoTDataAPI.model.Door;
+import co.edu.jdc.IoTDataAPI.model.entity.Door;
 import co.edu.jdc.IoTDataAPI.repository.DoorRepository;
 import co.edu.jdc.IoTDataAPI.util.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,17 +13,17 @@ public class DoorService {
     private DoorRepository doorRepository;
 
     /**
-     * Method to update door record
-     * @param door object to save
-     * @return true if saved or false if not
+     * update door state with given state
+     *
+     * @param idDoor id door to update
+     * @param doorState new door state to set
+     * @return door updated, with new state
      */
-    public  boolean updateDoor(Door door){
-        door.setUpdateDate(DateTime.getCurrentFormattedDateTime());
-        if(doorRepository.save(door)!=null){
-            return true;
-        }else{
-            return false;
-        }
+    public  Door updateDoor(int idDoor, String doorState){
+        Door doorToUpdate = doorRepository.getById(idDoor);
+        doorToUpdate.setDoorState(doorState);
+        doorToUpdate.setUpdateDate(DateTime.getCurrentFormattedDateTime());
+        return doorRepository.save(doorToUpdate);
     }
 
     /**
