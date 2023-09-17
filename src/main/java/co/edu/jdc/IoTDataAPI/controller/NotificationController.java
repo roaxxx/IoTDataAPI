@@ -21,7 +21,7 @@ public class NotificationController {
         return new ResponseEntity<>(notificationService.saveNotification(notification), HttpStatus.CREATED) ;
     }
 
-    @GetMapping("listNotifications")
+    @GetMapping()
     public ResponseEntity<List<Notification>> listNotifications(){
 
         return new ResponseEntity<>(notificationService.listNotifications(), HttpStatus.OK);

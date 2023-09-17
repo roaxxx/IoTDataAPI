@@ -16,7 +16,7 @@ public class LightbulbController {
     @Autowired
     private LightbulbService lightbulbService;
 
-    @PostMapping("{idLightbulb}")
+    @PatchMapping("{idLightbulb}")
     public ResponseEntity<Lightbulb> updateLightbulb(
             @PathVariable int idLightbulb,
             @RequestBody String lightbulbState
