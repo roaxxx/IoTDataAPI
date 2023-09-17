@@ -13,6 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("lightbulb")
 public class LightbulbController {
+
     @Autowired
     private LightbulbService lightbulbService;
 
@@ -29,5 +30,10 @@ public class LightbulbController {
         } catch (Exception e){
             return new ResponseEntity<>( HttpStatus.INTERNAL_SERVER_ERROR );
         }
+    }
+
+    @GetMapping()
+    public ResponseEntity<List<Lightbulb>> getAllLightbulbs(){
+        return new ResponseEntity<>(lightbulbService.listAllLighbulbs(), HttpStatus.OK) ;
     }
 }
