@@ -22,8 +22,9 @@ public class DoorController {
             @PathVariable int idDoor,
             @RequestBody String doorState)
     {
+	String newDoorState = doorState.replaceAll("\"","");
         try{
-            Door updatedDoor = doorService.updateDoor(idDoor,doorState);
+            Door updatedDoor = doorService.updateDoor(idDoor, newDoorState);
             return new ResponseEntity<>(updatedDoor, HttpStatus.OK);
         }catch( EntityNotFoundException e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

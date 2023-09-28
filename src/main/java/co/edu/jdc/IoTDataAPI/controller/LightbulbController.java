@@ -22,8 +22,9 @@ public class LightbulbController {
             @PathVariable int idLightbulb,
             @RequestBody String lightbulbState
     ){
+	String newLighbulbState = lightbulbState.replaceAll("\"","");
         try{
-            Lightbulb updateLightbulb = lightbulbService.updateLightbulb(idLightbulb, lightbulbState);
+            Lightbulb updateLightbulb = lightbulbService.updateLightbulb(idLightbulb, newLighbulbState);
             return new ResponseEntity<>(updateLightbulb, HttpStatus.OK);
         } catch (EntityNotFoundException ex){
             return new ResponseEntity<>( HttpStatus.NOT_FOUND );

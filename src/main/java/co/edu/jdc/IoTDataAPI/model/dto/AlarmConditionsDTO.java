@@ -2,7 +2,7 @@ package co.edu.jdc.IoTDataAPI.model.dto;
 
 public class AlarmConditionsDTO {
     private String alarmState;
-    private int condition = 0;
+    private int condition;
 
     public String getAlarmState() {
         return alarmState;
