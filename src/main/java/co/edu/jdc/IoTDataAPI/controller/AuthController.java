@@ -2,6 +2,7 @@ package co.edu.jdc.IoTDataAPI.controller;
 
 import java.security.Principal;
 
+import co.edu.jdc.IoTDataAPI.model.dto.AuthenticationResponseDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -35,7 +36,7 @@ public class AuthController {
     * @return Un objeto ResponseEntity que contiene un token de acceso si la autenticación es exitosa,o una respuesta de error con estado 401 si las credenciales son inválidas.
     */
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody AuthCredentialsDTO authCredentialsDTO) {
+    public ResponseEntity<?> login(@RequestBody AuthCredentialsDTO authCredentialsDTO) {
         try {
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
@@ -45,11 +46,14 @@ public class AuthController {
             SecurityContextHolder.getContext().setAuthentication(authentication);
             UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
             String token = tokenUtils.generateToken(userDetails);
-
+            AuthenticationResponseDTO authenticationResponseDTO = new AuthenticationResponseDTO(
+                    token,
+                    userDetails.getName()
+            );
             return ResponseEntity.ok()
-                    .body(token);
+                    .body(authenticationResponseDTO);
         } catch (AuthenticationException e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales inválidas");
+            return new ResponseEntity<String>("Credenciales invalidas",HttpStatus.UNAUTHORIZED);
         }
     }
 
