@@ -38,6 +38,8 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody AuthCredentialsDTO authCredentialsDTO) {
         try {
+
+
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
                             authCredentialsDTO.getEmail(),
@@ -53,7 +55,7 @@ public class AuthController {
             return ResponseEntity.ok()
                     .body(authenticationResponseDTO);
         } catch (AuthenticationException e) {
-            return new ResponseEntity<String>("Credenciales invalidas",HttpStatus.UNAUTHORIZED);
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales inválidas");
         }
     }
 
