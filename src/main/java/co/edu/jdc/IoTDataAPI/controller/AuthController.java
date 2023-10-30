@@ -24,7 +24,6 @@ import lombok.AllArgsConstructor;
 public class AuthController {
 
     private final AuthenticationManager authenticationManager;
-    private final UserDetailsServiceImpl userDetailsServiceImpl;
     private final UserService userService;
     private final TokenUtils tokenUtils;
 
@@ -38,8 +37,6 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody AuthCredentialsDTO authCredentialsDTO) {
         try {
-
-
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
                             authCredentialsDTO.getEmail(),
